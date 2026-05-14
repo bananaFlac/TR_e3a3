@@ -1,1 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【研究テーマ名】 - 〇〇班 課題研究ポートフォリオ</title>
+    
+    <!-- Tailwind CSSの読み込み -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Typographyプラグイン (Qiitaのような美しい文章レイアウトを実現) -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <!-- FontAwesome (アイコン用) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- カスタム設定 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        theme: '#55c500', /* Qiita風のテーマカラー */
+                        themeDark: '#47a800',
+                        bgGray: '#f5f6f6'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Arial", "Meiryo", sans-serif;
+            background-color: #f5f6f6;
+        }
+        /* スムーススクロール */
+        html { scroll-behavior: smooth; }
+        /* 目次などの固定要素のスクロール調整 */
+        .sticky-top-offset { top: 5rem; }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
+
+    <!-- ヘッダー -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="#" class="text-xl font-bold text-theme tracking-tight">〇〇班 Portfolio</a>
+                <span class="hidden sm:inline-block text-sm text-gray-500 border-l pl-4 border-gray-300">2026年度 課題研究</span>
+            </div>
+            <nav class="hidden md:flex gap-6 text-sm font-medium text-gray-600">
+                <a href="#" class="hover:text-theme transition">トップ</a>
+                <a href="#about" class="hover:text-theme transition">研究概要</a>
+                <a href="#members" class="hover:text-theme transition">メンバー</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- メインレイアウト -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-6">
+
+            <!-- 左カラム：アクションボタン (PCのみ表示) -->
+            <aside class="hidden lg:flex flex-col gap-4 w-16 shrink-0 sticky-top-offset h-fit">
+                <!-- ダミーのアクションボタン (Qiita風の装飾) -->
+                <button class="w-12 h-12 rounded-full bg-white shadow flex flex-col items-center justify-center text-gray-400 hover:text-theme transition">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                </button>
+                <button class="w-12 h-12 rounded-full bg-white shadow flex flex-col items-center justify-center text-gray-400 hover:text-theme transition">
+                    <i class="fa-solid fa-folder-plus"></i>
+                </button>
+            </aside>
+
+            <!-- 中央カラム：記事本文 -->
+            <article class="flex-1 bg-white rounded-xl shadow-sm overflow-hidden">
+                <!-- 記事ヘッダー情報 -->
+                <div class="px-6 sm:px-10 pt-8 pb-4">
+                    <div class="flex items-center gap-3 mb-4 text-sm text-gray-500">
+                        <span class="bg-theme text-white px-2 py-1 rounded font-bold">〇月度報告</span>
+                        <span><i class="fa-regular fa-clock mr-1"></i> 2026年05月14日 更新</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-bold leading-tight mb-4 text-gray-900">
+                        【研究テーマ名】現状の課題と〇月の進捗報告
+                    </h1>
+                    <div class="flex gap-2 mb-6">
+                        <span class="text-xs border border-gray-300 text-gray-600 px-2 py-1 rounded-full"><i class="fa-solid fa-tag mr-1"></i>情報技術</span>
+                        <span class="text-xs border border-gray-300 text-gray-600 px-2 py-1 rounded-full"><i class="fa-solid fa-tag mr-1"></i>AI分析</span>
+                        <span class="text-xs border border-gray-300 text-gray-600 px-2 py-1 rounded-full"><i class="fa-solid fa-tag mr-1"></i>Web開発</span>
+                    </div>
+                </div>
+
+                <!-- 記事コンテンツ (Tailwind Typographyによる自動スタイリング) -->
+                <!-- 注意: prose クラス内の見出し(h2, h3)や段落は自動で綺麗にレイアウトされます -->
+                <div class="px-6 sm:px-10 pb-10 prose prose-slate max-w-none prose-h2:border-b prose-h2:pb-2 prose-a:text-theme hover:prose-a:text-themeDark prose-img:rounded-lg">
+                    
+                    <p>
+                        ここにリード文（導入）を書きます。今月はどのような活動を行ったのか、この記事で伝えたい結論は何かを簡潔にまとめましょう。
+                        <strong>※注意：AIチェッカーにかけられるため、文章は必ず自分たちの言葉で論理的に記述してください。</strong>
+                    </p>
+
+                    <h2 id="section1">1. 研究の背景と目的（おさらい）</h2>
+                    <p>
+                        私たちの班は、〇〇という課題に対して、〇〇のアプローチを用いて解決を目指しています。
+                        この研究がなぜ必要なのか、どのような社会的意義があるのかを記載します。
+                    </p>
+
+                    <h2 id="section2">2. 今月の活動記録</h2>
+                    <p>今月実施した具体的な調査、実験、開発のプロセスを記載します。Google Keep等で記録したメモを元に、客観的な事実とそれに対する考察を分けて書きましょう。</p>
+                    
+                    <h3>2.1 実装した機能の概要</h3>
+                    <p>今回はユーザーインターフェースの部分を作成しました。以下のコードはその一部です。</p>
+                    
+                    <!-- コードブロックの例 -->
+                    <pre><code class="language-javascript">// データの取得と処理の例
+async function fetchData() {
+    try {
+        const response = await fetch('/api/data');
+        const data = await response.json();
+        console.log("データの取得に成功しました:", data);
+        return data;
+    } catch (error) {
+        console.error("エラーが発生しました:", error);
+    }
+}</code></pre>
+
+                    <h2 id="section3">3. 実験結果と考察</h2>
+                    <p>
+                        得られたデータやフィードバックを記載します。画像を使う場合は、スマホで見ても崩れないように注意してください。
+                        （※Tailwind Typographyにより、画像は自動でレスポンシブになります）
+                    </p>
+                    
+                    <!-- 画像挿入の例。alt属性は必須です。 -->
+                    <figure>
+                        <img src="https://placehold.co/800x400/e2e8f0/475569?text=Experiment+Graph+Placeholder" alt="実験結果のグラフ" class="w-full object-cover">
+                        <figcaption class="text-center text-sm text-gray-500">図1: 〇〇に関するアンケート調査結果（n=100）</figcaption>
+                    </figure>
+
+                    <h3>考察（企業の方に添削されるポイント）</h3>
+                    <ul>
+                        <li>データからどのようなことが言えるか？（客観的事実）</li>
+                        <li>なぜその結果になったと考えられるか？（論理的推論）</li>
+                        <li>当初の仮説とどう違ったか？（批判的思考）</li>
+                    </ul>
+
+                    <h2 id="section4">4. 次月の課題と計画</h2>
+                    <p>今月の活動を踏まえて、来月はどのようなことに取り組むのかをリストアップします。</p>
+                    <ol>
+                        <li>データベースの設計と構築を完了させる</li>
+                        <li>プロトタイプを実際のユーザーに使ってもらい、ヒアリングを実施する</li>
+                        <li>ヒアリング結果を元に要件定義を見直す</li>
+                    </ol>
+
+                    <h2 id="section5">5. 参考資料・リンク</h2>
+                    <p>情報の正確性を担保するため、参考にした文献やサイトは必ず記載しましょう。</p>
+                    <ul>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer">〇〇省：令和5年版 情報通信白書</a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer">React公式ドキュメント</a></li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- 右カラム：目次・プロフィール (PC/タブレット表示) -->
+            <aside class="hidden md:flex flex-col w-64 shrink-0 gap-6">
+                <!-- 班員プロフィール -->
+                <div class="bg-white rounded-xl shadow-sm p-5" id="members">
+                    <h3 class="font-bold text-gray-800 border-b pb-2 mb-4 text-sm">研究メンバー</h3>
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold">A</div>
+                        <div>
+                            <div class="text-sm font-bold">生徒A (リーダー)</div>
+                            <div class="text-xs text-gray-500">プロジェクト管理・企画</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold">B</div>
+                        <div>
+                            <div class="text-sm font-bold">生徒B</div>
+                            <div class="text-xs text-gray-500">プログラミング・実装</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold">C</div>
+                        <div>
+                            <div class="text-sm font-bold">生徒C</div>
+                            <div class="text-xs text-gray-500">デザイン・資料作成</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 目次 (Stickyで追従) -->
+                <div class="bg-white rounded-xl shadow-sm p-5 sticky-top-offset h-fit hidden lg:block">
+                    <h3 class="font-bold text-gray-800 mb-3 text-sm"><i class="fa-solid fa-list mr-2"></i>目次</h3>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li><a href="#section1" class="hover:text-theme transition">1. 研究の背景と目的</a></li>
+                        <li>
+                            <a href="#section2" class="hover:text-theme transition">2. 今月の活動記録</a>
+                            <ul class="pl-4 mt-1 space-y-1 text-gray-500">
+                                <li><a href="#section2" class="hover:text-theme transition">2.1 実装した機能の概要</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#section3" class="hover:text-theme transition">3. 実験結果と考察</a></li>
+                        <li><a href="#section4" class="hover:text-theme transition">4. 次月の課題と計画</a></li>
+                        <li><a href="#section5" class="hover:text-theme transition">5. 参考資料・リンク</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-white border-t py-8 mt-12 text-center text-sm text-gray-500">
+        <p>&copy; 2026 〇〇班 課題研究プロジェクト. All Rights Reserved.</p>
+        <p class="mt-2 text-xs">※このWebポートフォリオは、全世界に向けて研究成果を発信しています。</p>
+    </footer>
+
+</body>
+</html>
