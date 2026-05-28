@@ -1,216 +1,494 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【自転車を利用した三相交流発電機の作成及び研究】 - 〇〇班 課題研究ポートフォリオ</title>
-    
-    <!-- Tailwind CSSの読み込み -->
+    <title>【研究テーマ】課題研究ポータルサイト</title>
+    <!-- Tailwind CSSの読み込み (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tailwind Typographyプラグイン (Qiitaのような美しい文章レイアウトを実現) -->
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-    <!-- FontAwesome (アイコン用) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- カスタム設定 -->
+    <!-- カスタム設定 (テーマカラーを簡単に変更可能) -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        theme: '#55c500', /* Qiita風のテーマカラー */
-                        themeDark: '#47a800',
-                        bgGray: '#f5f6f6'
+                        // メインカラー。研究のイメージに合わせてここを変更するだけでサイト全体の印象が変わります
+                        primary: {
+                            50: '#f0fdf4',   // 例: 自然科学系なら緑 (#10b981)、IT系なら青 (#2563eb) など
+                            600: '#2563eb',  // 基本のテーマ色 (標準は知的なブルー)
+                            700: '#1d4ed8',  // ホバー時の濃い色
+                        },
+                        secondary: '#475569',
                     }
                 }
             }
         }
     </script>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Arial", "Meiryo", sans-serif;
-            background-color: #f5f6f6;
+        /* 補足的なスタイル調整（必要に応じて追記してください） */
+        .scroll-mt-header {
+            scroll-margin-top: 4rem; /* ヘッダー固定表示用のスクロール余白 */
         }
-        /* スムーススクロール */
-        html { scroll-behavior: smooth; }
-        /* 目次などの固定要素のスクロール調整 */
-        .sticky-top-offset { top: 5rem; }
     </style>
 </head>
-<body class="text-gray-800 antialiased">
+<body class="bg-slate-50 text-slate-900 font-sans leading-normal tracking-normal antialiased">
 
-    <!-- ヘッダー -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <a href="#" class="text-xl font-bold text-theme tracking-tight">〇〇班 Portfolio</a>
-                <span class="hidden sm:inline-block text-sm text-gray-500 border-l pl-4 border-gray-300">2026年度 課題研究</span>
+    <!-- ナビゲーションバー (画面上部に固定) -->
+    <nav class="fixed w-full z-50 top-0 bg-white border-b border-slate-200 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0 flex items-center font-bold text-xl text-primary-600">
+                        <!-- 研究アイコン (汎用的なサイエンス・学問のマーク) -->
+                        <svg class="h-8 w-8 mr-2 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        課題研究ポータル
+                    </a>
+                </div>
+                <!-- デスクトップ用メニュー -->
+                <div class="hidden md:flex md:items-center md:space-x-6">
+                    <a href="#about" class="text-slate-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">研究概要</a>
+                    <a href="#research" class="text-slate-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">研究内容</a>
+                    <a href="#members" class="text-slate-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">メンバー</a>
+                    <a href="#progress" class="text-slate-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">活動進捗</a>
+                    <a href="#resources" class="text-slate-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">成果物</a>
+                </div>
+                <!-- スマホ用メニューボタン -->
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-500 hover:text-slate-900 focus:outline-none p-2" aria-label="メニューを開く">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <nav class="hidden md:flex gap-6 text-sm font-medium text-gray-600">
-                <a href="#" class="hover:text-theme transition">トップ</a>
-                <a href="#about" class="hover:text-theme transition">研究概要</a>
-                <a href="#members" class="hover:text-theme transition">メンバー</a>
-            </nav>
         </div>
-    </header>
 
-    <!-- メインレイアウト -->
-    <main class="max-w-7xl mx-auto px-4 py-8">
-        <div class="flex flex-col lg:flex-row gap-6">
+        <!-- スマホ用展開メニュー -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 shadow-lg absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-primary-600 hover:bg-slate-50">研究概要</a>
+                <a href="#research" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-primary-600 hover:bg-slate-50">研究内容</a>
+                <a href="#members" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-primary-600 hover:bg-slate-50">メンバー</a>
+                <a href="#progress" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-primary-600 hover:bg-slate-50">活動進捗</a>
+                <a href="#resources" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-primary-600 hover:bg-slate-50">成果物</a>
+            </div>
+        </div>
+    </nav>
 
-            <!-- 左カラム：アクションボタン (PCのみ表示) -->
-            <aside class="hidden lg:flex flex-col gap-4 w-16 shrink-0 sticky-top-offset h-fit">
-                <!-- ダミーのアクションボタン (Qiita風の装飾) -->
-                <button class="w-12 h-12 rounded-full bg-white shadow flex flex-col items-center justify-center text-gray-400 hover:text-theme transition">
-                    <i class="fa-solid fa-thumbs-up"></i>
-                </button>
-                <button class="w-12 h-12 rounded-full bg-white shadow flex flex-col items-center justify-center text-gray-400 hover:text-theme transition">
-                    <i class="fa-solid fa-folder-plus"></i>
-                </button>
-            </aside>
-
-            <!-- 中央カラム：記事本文 -->
-            <article class="flex-1 bg-white rounded-xl shadow-sm overflow-hidden">
-                <!-- 記事ヘッダー情報 -->
-                <div class="px-6 sm:px-10 pt-8 pb-4">
-                    <div class="flex items-center gap-3 mb-4 text-sm text-gray-500">
-                        <span class="bg-theme text-white px-2 py-1 rounded font-bold">〇月度報告</span>
-                        <span><i class="fa-regular fa-clock mr-1"></i> 2026年05月14日 更新</span>
-                    </div>
-                    <h1 class="text-3xl sm:text-4xl font-bold leading-tight mb-4 text-gray-900">
-                        【研究テーマ名】現状の課題と〇月の進捗報告
-                    </h1>
-                    <div class="flex gap-2 mb-6">
-                        <span class="text-xs border border-gray-300 text-gray-600 px-2 py-1 rounded-full"><i class="fa-solid fa-tag mr-1"></i>情報技術</span>
-                        <span class="text-xs border border-gray-300 text-gray-600 px-2 py-1 rounded-full"><i class="fa-solid fa-tag mr-1"></i>AI分析</span>
-                        <span class="text-xs border border-gray-300 text-gray-600 px-2 py-1 rounded-full"><i class="fa-solid fa-tag mr-1"></i>Web開発</span>
-                    </div>
-                </div>
-
-                <!-- 記事コンテンツ (Tailwind Typographyによる自動スタイリング) -->
-                <!-- 注意: prose クラス内の見出し(h2, h3)や段落は自動で綺麗にレイアウトされます -->
-                <div class="px-6 sm:px-10 pb-10 prose prose-slate max-w-none prose-h2:border-b prose-h2:pb-2 prose-a:text-theme hover:prose-a:text-themeDark prose-img:rounded-lg">
-                    
-                    <p>
-                        ここにリード文（導入）を書きます。今月はどのような活動を行ったのか、この記事で伝えたい結論は何かを簡潔にまとめましょう。
-                        <strong>※注意：AIチェッカーにかけられるため、文章は必ず自分たちの言葉で論理的に記述してください。</strong>
-                    </p>
-
-                    <h2 id="section1">1. 研究の背景と目的（おさらい）</h2>
-                    <p>
-                        私たちの班は、〇〇という課題に対して、〇〇のアプローチを用いて解決を目指しています。
-                        この研究がなぜ必要なのか、どのような社会的意義があるのかを記載します。
-                    </p>
-
-                    <h2 id="section2">2. 今月の活動記録</h2>
-                    <p>今月実施した具体的な調査、実験、開発のプロセスを記載します。Google Keep等で記録したメモを元に、客観的な事実とそれに対する考察を分けて書きましょう。</p>
-                    
-                    <h3>2.1 実装した機能の概要</h3>
-                    <p>今回はユーザーインターフェースの部分を作成しました。以下のコードはその一部です。</p>
-                    
-                    <!-- コードブロックの例 -->
-                    <pre><code class="language-javascript">// データの取得と処理の例
-async function fetchData() {
-    try {
-        const response = await fetch('/api/data');
-        const data = await response.json();
-        console.log("データの取得に成功しました:", data);
-        return data;
-    } catch (error) {
-        console.error("エラーが発生しました:", error);
-    }
-}</code></pre>
-
-                    <h2 id="section3">3. 実験結果と考察</h2>
-                    <p>
-                        得られたデータやフィードバックを記載します。画像を使う場合は、スマホで見ても崩れないように注意してください。
-                        （※Tailwind Typographyにより、画像は自動でレスポンシブになります）
-                    </p>
-                    
-                    <!-- 画像挿入の例。alt属性は必須です。 -->
-                    <figure>
-                        <img src="https://placehold.co/800x400/e2e8f0/475569?text=Experiment+Graph+Placeholder" alt="実験結果のグラフ" class="w-full object-cover">
-                        <figcaption class="text-center text-sm text-gray-500">図1: 〇〇に関するアンケート調査結果（n=100）</figcaption>
-                    </figure>
-
-                    <h3>考察（企業の方に添削されるポイント）</h3>
-                    <ul>
-                        <li>データからどのようなことが言えるか？（客観的事実）</li>
-                        <li>なぜその結果になったと考えられるか？（論理的推論）</li>
-                        <li>当初の仮説とどう違ったか？（批判的思考）</li>
-                    </ul>
-
-                    <h2 id="section4">4. 次月の課題と計画</h2>
-                    <p>今月の活動を踏まえて、来月はどのようなことに取り組むのかをリストアップします。</p>
-                    <ol>
-                        <li>データベースの設計と構築を完了させる</li>
-                        <li>プロトタイプを実際のユーザーに使ってもらい、ヒアリングを実施する</li>
-                        <li>ヒアリング結果を元に要件定義を見直す</li>
-                    </ol>
-
-                    <h2 id="section5">5. 参考資料・リンク</h2>
-                    <p>情報の正確性を担保するため、参考にした文献やサイトは必ず記載しましょう。</p>
-                    <ul>
-                        <li><a href="#" target="_blank" rel="noopener noreferrer">〇〇省：令和5年版 情報通信白書</a></li>
-                        <li><a href="#" target="_blank" rel="noopener noreferrer">React公式ドキュメント</a></li>
-                    </ul>
-                </div>
-            </article>
-
-            <!-- 右カラム：目次・プロフィール (PC/タブレット表示) -->
-            <aside class="hidden md:flex flex-col w-64 shrink-0 gap-6">
-                <!-- 班員プロフィール -->
-                <div class="bg-white rounded-xl shadow-sm p-5" id="members">
-                    <h3 class="font-bold text-gray-800 border-b pb-2 mb-4 text-sm">研究メンバー</h3>
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold">A</div>
-                        <div>
-                            <div class="text-sm font-bold">生徒A (リーダー)</div>
-                            <div class="text-xs text-gray-500">プロジェクト管理・企画</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold">B</div>
-                        <div>
-                            <div class="text-sm font-bold">生徒B</div>
-                            <div class="text-xs text-gray-500">プログラミング・実装</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold">C</div>
-                        <div>
-                            <div class="text-sm font-bold">生徒C</div>
-                            <div class="text-xs text-gray-500">デザイン・資料作成</div>
+    <main class="pt-16">
+        
+        <!-- ヒーローセクション (研究の顔) -->
+        <section class="relative bg-white overflow-hidden border-b border-slate-100">
+            <div class="max-w-7xl mx-auto">
+                <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 pt-16 px-4 sm:px-6 lg:px-8">
+                    <div class="sm:text-center lg:text-left">
+                        <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-primary-600 mb-4">
+                            2026年度 課題研究プロジェクト
+                        </span>
+                        <h1 class="text-4xl tracking-tight font-extrabold text-slate-900 sm:text-5xl md:text-6xl">
+                            <span class="block text-slate-800 text-2xl sm:text-3xl font-bold tracking-normal mb-1">研究テーマ:</span>
+                            <!-- ここにメインタイトルを記述 -->
+                            <span class="block text-primary-600 leading-tight">社会に貢献する〇〇の探究とシステム構築</span>
+                        </h1>
+                        <p class="mt-4 text-base text-slate-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0 leading-relaxed">
+                            私たちの身の回りにある課題を解決するため、データを収集し、検証を行い、実践的なアプローチで課題研究に取り組んでいます。本サイトではその全プロセスと成果を公開しています。
+                        </p>
+                        <div class="mt-8 sm:mt-10 sm:flex sm:justify-center lg:justify-start gap-4">
+                            <div class="rounded-md shadow">
+                                <a href="#about" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 md:py-4 md:text-lg transition-colors">
+                                    研究の概要を読む
+                                </a>
+                            </div>
+                            <div class="mt-3 sm:mt-0">
+                                <a href="#resources" class="w-full flex items-center justify-center px-8 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 md:py-4 md:text-lg transition-colors">
+                                    成果物をみる
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <!-- 右側：ビジュアルエリア（SVGやイラストなどで汎用的に表現） -->
+            <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-slate-50 flex items-center justify-center p-8">
+                <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-6 border border-slate-100 flex flex-col justify-between aspect-video lg:aspect-square">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex space-x-2">
+                            <span class="w-3 h-3 bg-red-400 rounded-full"></span>
+                            <span class="w-3 h-3 bg-yellow-400 rounded-full"></span>
+                            <span class="w-3 h-3 bg-green-400 rounded-full"></span>
+                        </div>
+                        <span class="text-xs text-slate-400 font-mono">research_status.json</span>
+                    </div>
+                    <div class="flex-grow flex items-center justify-center">
+                        <!-- 汎用的な研究イメージのベクターイラスト -->
+                        <svg class="h-32 w-32 text-primary-600 opacity-85 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+                        </svg>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-sm font-medium text-slate-700">「仮説の構築 ➔ 実証実験 ➔ 分析」のサイクル</p>
+                        <p class="text-xs text-slate-400 mt-1">※プロジェクト進行に合わせて画像に変更可能</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                <!-- 目次 (Stickyで追従) -->
-                <div class="bg-white rounded-xl shadow-sm p-5 sticky-top-offset h-fit hidden lg:block">
-                    <h3 class="font-bold text-gray-800 mb-3 text-sm"><i class="fa-solid fa-list mr-2"></i>目次</h3>
-                    <ul class="text-sm text-gray-600 space-y-2">
-                        <li><a href="#section1" class="hover:text-theme transition">1. 研究の背景と目的</a></li>
-                        <li>
-                            <a href="#section2" class="hover:text-theme transition">2. 今月の活動記録</a>
-                            <ul class="pl-4 mt-1 space-y-1 text-gray-500">
-                                <li><a href="#section2" class="hover:text-theme transition">2.1 実装した機能の概要</a></li>
+        <!-- 研究概要 (About) セクション -->
+        <section id="about" class="py-20 bg-slate-50 scroll-mt-header">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-sm text-primary-600 font-semibold tracking-wider uppercase">Project Summary</h2>
+                    <p class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+                        研究の目的と背景
+                    </p>
+                    <div class="h-1 w-20 bg-primary-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <!-- 背景カード -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-blue-50 text-primary-600 rounded-xl flex items-center justify-center mb-6">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">現状の課題と研究の背景</h3>
+                            <p class="text-slate-600 leading-relaxed">
+                                ここに、なぜこの研究を始めようと思ったのか（きっかけや社会的な問題点）を記載します。
+                                日常生活や社会の中で起きている不便なこと、既存の方法では解決できていない現状をわかりやすく整理しましょう。
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 text-sm text-slate-400 font-medium">
+                            Keyword: 現代社会の課題 / 解決に向けた必要性
+                        </div>
+                    </div>
+
+                    <!-- 目的・検証項目カード -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-blue-50 text-primary-600 rounded-xl flex items-center justify-center mb-6">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">研究の目的と達成したいゴール</h3>
+                            <p class="text-slate-600 leading-relaxed">
+                                この研究を通して、どのような成果を上げたいのか、何が分かれば「成功」なのかを明文化します。
+                            </p>
+                            <ul class="space-y-3 mt-4 text-slate-600">
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span><strong>目的1:</strong> 〇〇に関する新しいデータの収集およびデータベース化</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span><strong>目的2:</strong> 課題解決のために役立つプロトタイプ（製品やシステム、仕組みなど）の設計</span>
+                                </li>
                             </ul>
-                        </li>
-                        <li><a href="#section3" class="hover:text-theme transition">3. 実験結果と考察</a></li>
-                        <li><a href="#section4" class="hover:text-theme transition">4. 次月の課題と計画</a></li>
-                        <li><a href="#section5" class="hover:text-theme transition">5. 参考資料・リンク</a></li>
-                    </ul>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 text-sm text-slate-400 font-medium">
+                            Goal: 実社会での適用検証および有効性の提示
+                        </div>
+                    </div>
                 </div>
-            </aside>
+            </div>
+        </section>
 
-        </div>
+        <!-- 研究内容・方法 (Research Content) セクション -->
+        <section id="research" class="py-20 bg-white scroll-mt-header">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-sm text-primary-600 font-semibold tracking-wider uppercase">Research Approach</h2>
+                    <p class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+                        具体的な研究方法・検証のアプローチ
+                    </p>
+                    <div class="h-1 w-20 bg-primary-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- アプローチ1 -->
+                    <div class="bg-slate-50 rounded-2xl p-8 hover:shadow-md transition-all duration-300 border border-slate-100">
+                        <div class="w-12 h-12 bg-blue-100 text-primary-600 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-3">1. 先行研究の調査と仮説立案</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            まずは文献調査、Webによる先行事例の収集を行います。現状何が明らかになっていて、何が未解明なのかを調べ、仮説を組み立てます。
+                        </p>
+                    </div>
+
+                    <!-- アプローチ2 -->
+                    <div class="bg-slate-50 rounded-2xl p-8 hover:shadow-md transition-all duration-300 border border-slate-100">
+                        <div class="w-12 h-12 bg-blue-100 text-primary-600 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-3">2. 実証実験・データ測定</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            組み立てた仮説を証明・否定するための実験を行います。シミュレーション、アンケート、センサーによる計測、プログラムのデバッグ等、テーマに合わせて実践的な検証をします。
+                        </p>
+                    </div>
+
+                    <!-- アプローチ3 -->
+                    <div class="bg-slate-50 rounded-2xl p-8 hover:shadow-md transition-all duration-300 border border-slate-100">
+                        <div class="w-12 h-12 bg-blue-100 text-primary-600 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-3">3. データの分析と考察</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            実験やアンケート等で得られた数値をグラフ化・統計解析し、どのような結果が得られたのか。最初に立てた仮説が正しかったのか考察を行います。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- メンバー紹介 (Members) セクション -->
+        <section id="members" class="py-20 bg-slate-50 scroll-mt-header">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-sm text-primary-600 font-semibold tracking-wider uppercase">Research Team</h2>
+                    <p class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+                        研究メンバー
+                    </p>
+                    <div class="h-1 w-20 bg-primary-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- メンバー1 -->
+                    <div class="bg-white rounded-2xl p-6 text-center border border-slate-100 shadow-sm">
+                        <!-- アバター用アイコンプレースホルダー -->
+                        <div class="w-24 h-24 bg-slate-100 rounded-full mx-auto flex items-center justify-center mb-4 text-slate-400">
+                            <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">メンバー A</h3>
+                        <p class="text-sm text-primary-600 font-semibold mb-3">プロジェクトリーダー / 研究計画・発表構成</p>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            プロジェクト全体の統括と全体のストーリー設計、外部連絡などを担当しています。
+                        </p>
+                    </div>
+
+                    <!-- メンバー2 -->
+                    <div class="bg-white rounded-2xl p-6 text-center border border-slate-100 shadow-sm">
+                        <div class="w-24 h-24 bg-slate-100 rounded-full mx-auto flex items-center justify-center mb-4 text-slate-400">
+                            <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">メンバー B</h3>
+                        <p class="text-sm text-primary-600 font-semibold mb-3">技術・システム開発 / 実証検証</p>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            プログラムの実装やデバイスの設計、実証用データのクレンジングと統計分析を担当しています。
+                        </p>
+                    </div>
+
+                    <!-- メンバー3 -->
+                    <div class="bg-white rounded-2xl p-6 text-center border border-slate-100 shadow-sm">
+                        <div class="w-24 h-24 bg-slate-100 rounded-full mx-auto flex items-center justify-center mb-4 text-slate-400">
+                            <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">メンバー C</h3>
+                        <p class="text-sm text-primary-600 font-semibold mb-3">デザイン・ドキュメント作成</p>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            当Webサイトの構築、発表用スライドのデザイン、報告資料の編集をメインに担当しています。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 進捗状況/タイムライン (Progress) セクション -->
+        <section id="progress" class="py-20 bg-white scroll-mt-header">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-sm text-primary-600 font-semibold tracking-wider uppercase">Project Timeline</h2>
+                    <p class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+                        これまでの活動と今後の予定
+                    </p>
+                    <div class="h-1 w-20 bg-primary-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="relative border-l-2 border-primary-600 ml-3 md:ml-0 md:mx-auto md:w-full">
+                    <!-- マイルストーン1 (完了) -->
+                    <div class="mb-10 ml-6 md:ml-8 relative">
+                        <span class="absolute -left-9 md:-left-11 flex items-center justify-center w-6 h-6 bg-primary-600 rounded-full ring-4 ring-white">
+                            <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </span>
+                        <h3 class="flex items-center mb-1 text-lg font-bold text-slate-900">テーマ選定・背景調査</h3>
+                        <time class="block mb-2 text-sm font-medium text-slate-400">4月 - 5月</time>
+                        <p class="text-base text-slate-500 leading-relaxed">
+                            学内・コミュニティでのアンケートをもとに課題を絞り込み、先行研究（学術論文や既存サービス）の徹底的な調査を完了しました。
+                        </p>
+                    </div>
+
+                    <!-- マイルストーン2 (進行中) -->
+                    <div class="mb-10 ml-6 md:ml-8 relative">
+                        <span class="absolute -left-9 md:-left-11 flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full ring-4 ring-white">
+                            <span class="w-2.5 h-2.5 bg-primary-600 rounded-full animate-ping"></span>
+                        </span>
+                        <h3 class="flex items-center mb-1 text-lg font-bold text-slate-900">
+                            実証実験 & プロトタイプ開発
+                            <span class="bg-blue-100 text-primary-600 text-xs font-semibold px-2.5 py-0.5 rounded ml-3">現在進行中</span>
+                        </h3>
+                        <time class="block mb-2 text-sm font-medium text-slate-400">6月 - 現在</time>
+                        <p class="text-base text-slate-500 leading-relaxed">
+                            データを収集し分析を行うための環境設計、およびアプリや機材などの試作を繰り返し行っています。
+                        </p>
+                    </div>
+
+                    <!-- マイルストーン3 (予定) -->
+                    <div class="ml-6 md:ml-8 relative">
+                        <span class="absolute -left-9 md:-left-11 flex items-center justify-center w-6 h-6 bg-slate-200 rounded-full ring-4 ring-white"></span>
+                        <h3 class="flex items-center mb-1 text-lg font-bold text-slate-400">データ解析・検証結果のとりまとめ</h3>
+                        <time class="block mb-2 text-sm font-medium text-slate-400">予定: 9月以降</time>
+                        <p class="text-base text-slate-400 leading-relaxed">
+                            実験データをまとめ、課題解決に対する十分な効果が得られたかを客観的に評価し、最終発表に向けた資料を作成します。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 成果物・リソース (Resources) セクション -->
+        <section id="resources" class="py-20 bg-slate-50 scroll-mt-header border-t border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-sm text-primary-600 font-semibold tracking-wider uppercase">Project Resources</h2>
+                    <p class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+                        成果物・各種資料
+                    </p>
+                    <div class="h-1 w-20 bg-primary-600 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 資料カード1 -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="text-primary-600 mb-4">
+                                <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">研究報告論文（PDF形式）</h3>
+                            <p class="text-sm text-slate-500 leading-relaxed mb-6">
+                                これまでの活動、測定データ、検証方法の詳細、および最終的な考察を網羅したPDF形式の研究論文です。
+                            </p>
+                        </div>
+                        <a href="#" class="w-full inline-flex justify-center items-center py-2.5 px-4 border border-slate-300 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors">
+                            PDFをダウンロード
+                        </a>
+                    </div>
+
+                    <!-- 資料カード2 -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="text-primary-600 mb-4">
+                                <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">発表用プレゼンテーションスライド</h3>
+                            <p class="text-sm text-slate-500 leading-relaxed mb-6">
+                                学内、または学外の発表会で使用したスライドデータ、もしくはポスターセッション用の資料です。
+                            </p>
+                        </div>
+                        <a href="#" class="w-full inline-flex justify-center items-center py-2.5 px-4 border border-slate-300 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors">
+                            資料を閲覧する
+                        </a>
+                    </div>
+
+                    <!-- 資料カード3 -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="text-primary-600 mb-4">
+                                <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">ソースコード / 計測データ</h3>
+                            <p class="text-sm text-slate-500 leading-relaxed mb-6">
+                                研究で使用したスクリプトや設計データ、また実験を通して得られた生データ一式をGitHub上に公開しています。
+                            </p>
+                        </div>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-full inline-flex justify-center items-center py-2.5 px-4 border border-transparent bg-slate-900 text-white rounded-lg text-sm font-semibold hover:bg-slate-800 transition-colors">
+                            GitHubでソースコードをみる
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- フッター -->
-    <footer class="bg-white border-t py-8 mt-12 text-center text-sm text-gray-500">
-        <p>&copy; 2026 〇〇班 課題研究プロジェクト. All Rights Reserved.</p>
-        <p class="mt-2 text-xs">※このWebポートフォリオは、全世界に向けて研究成果を発信しています。</p>
+    <footer class="bg-white border-t border-slate-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <span class="font-bold text-xl text-slate-900 flex items-center">
+                    <svg class="h-6 w-6 mr-2 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    課題研究ポータル
+                </span>
+                <p class="text-slate-500 text-sm mt-1">〇〇学校・チーム〇〇 (2026)</p>
+            </div>
+            <div class="flex space-x-6">
+                <!-- GitHubへのリンクアイコン -->
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-600 transition-colors" aria-label="GitHubリポジトリ">
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 text-center text-slate-400 text-sm">
+            &copy; 2026 チーム名. All rights reserved.
+        </div>
     </footer>
 
+    <!-- 機能動作用のJavaScript (スマホメニューの開閉など) -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+
+        // スマホ用ハンバーガーメニューの開閉
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            } else {
+                icon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            }
+        });
+
+        // リンククリック時にスマホメニューを閉じる
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            });
+        });
+    </script>
 </body>
 </html>
