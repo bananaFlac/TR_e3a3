@@ -5,18 +5,51 @@
   --text: #0f172a; /* slate-900 */
   --muted: #64748b; /* slate-500 */
   --border: #e6eef8; /* slate-100-ish */
+  --primary: #2563eb;
 }
 
-html,body{background:var(--bg);color:var(--text)}
+/* Responsive typography */
+html { font-size: 16px; }
+@media (min-width: 640px) { html { font-size: 16.5px; } }
+@media (min-width: 1024px) { html { font-size: 17px; } }
+body{background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+
+/* Container */
+.container{max-width:1200px;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem}
 
 /* Card and surface defaults */
-.card-bg{background:var(--card-bg)}
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1rem}
 
-/* Muted text */
+/* Button styles */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:8px;border:1px solid transparent;font-weight:600;transition:all .18s ease}
+.btn:focus{outline:none}
+.btn:focus-visible{box-shadow:0 0 0 4px rgba(37,99,235,.14)}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{filter:brightness(.95);transform:translateY(-1px)}
+.btn-outline{background:transparent;border-color:var(--border);color:var(--text)}
+
+/* Navigation improvements */
+.site-nav{background:rgba(255,255,255,.72);backdrop-filter:blur(6px);border-bottom:1px solid rgba(15,23,42,.06)}
+html.dark .site-nav{background:rgba(15,23,42,.56)}
+
+/* Cards and surfaces */
+.elevated{box-shadow:0 6px 18px rgba(2,6,23,.06)}
+
+/* Links */
+a{color:var(--primary);transition:color .12s ease}
+a:hover{text-decoration:underline}
+
+/* Utilities */
 .muted{color:var(--muted)}
-
-/* Borders */
 .border-custom{border-color:var(--border)}
+
+/* Mobile menu */
+#mobile-menu{transition:transform .22s ease,opacity .18s ease}
+
+/* Global transitions and reduced motion respect */
+@media (prefers-reduced-motion: reduce){
+  *{transition:none!important;animation:none!important}
+}
 
 /* Dark mode overrides via .dark on <html> */
 html.dark{
@@ -25,6 +58,7 @@ html.dark{
   --text:#e2e8f0; /* slate-100 */
   --muted:#cbd5e1; /* slate-300 */
   --border:#334155; /* slate-700 */
+  --primary:#60a5fa;
 }
 
 /* Make common components adapt when Tailwind utility classes are present */
@@ -40,12 +74,28 @@ html.dark .text-slate-600{color:var(--muted) !important}
 html.dark .text-slate-500{color:var(--muted) !important}
 html.dark .border-slate-100, html.dark .border-slate-200{border-color:var(--border) !important}
 
+/* Ensure links remain visible in dark */
+html.dark a{color:var(--primary)}
+
+/* Accessibility tweak: ensure sufficient contrast for primary buttons */
+html.dark .btn-primary{background:#2563eb;color:#fff}
+
 /* Small helpers */
 .theme-toggle{cursor:pointer}
 
-/* Ensure links remain visible */
-html.dark a{color:#60a5fa}
+/* Form controls baseline */
+input,textarea,select{border:1px solid var(--border);border-radius:8px;padding:.5rem .75rem;background:transparent}
+html.dark input,html.dark textarea,html.dark select{background:#071229;border-color:#223149;color:var(--text)}
 
-/* Accessibility tweak: ensure sufficient contrast for buttons */
-html.dark .bg-primary-600{background-color:#2563eb !important}
-html.dark .text-white{color:#ffffff !important}
+/* Ensure footers have breathing room */
+footer{padding-top:3rem;padding-bottom:3rem}
+
+/* Content max width for readability */
+.prose{max-width:65ch}
+
+/* Make table rows clearer */
+table{border-collapse:collapse}
+th,td{padding:.6rem .75rem}
+
+/* Utility for visually hidden */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
