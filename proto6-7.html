@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企画検討・活動記録 | 課題研究ポータルサイト</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            600: '#2563eb', // 知的なブルー
+                            700: '#1d4ed8',
+                        },
+                        secondary: '#475569',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .scroll-mt-header {
+            scroll-margin-top: 4rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans leading-normal tracking-normal antialiased">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-primary-600 rounded-full"></span>
+                課題研究ポータルサイト
+            </a>
+            <nav class="flex gap-4">
+                <a href="index.html" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition">トップへ戻る</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-4 py-10">
+        
+        <div class="border-b border-slate-200 pb-6 mb-10">
+            <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-2">企画検討・活動記録</h1>
+            <p class="text-slate-600 text-sm">研究テーマ決定からプロトタイプ製作、実験測定にいたる班の検討プロセスを記録しています。</p>
+        </div>
+
+        <div class="space-y-16">
+
+            <article class="prose prose-slate max-w-none">
+                <div class="flex items-center gap-3 mb-3 text-sm text-slate-500">
+                    <span class="bg-primary-50 text-primary-600 font-semibold px-2.5 py-0.5 rounded-full text-xs">フェーズ2: 実験</span>
+                    <time datetime="2026-06-10">2026年6月10日</time>
+                </div>
+                
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">プロトタイプの試作、および発電効率の初期数値測定</h2>
+                
+                <div class="text-slate-700 space-y-4 leading-relaxed mb-6">
+                    <p>
+                        プロトタイプの製作にあたり、使用すべき部品の選定と、それらをどのように組み合わせるかという基本構造（方式）を検討しました。
+                        実際の製作においては、部品ごとの役割や留意点を明確にした上で実装（組み立て）を行い、検証実験によって発電データの数値を測定しました。
+                    </p>
+                    <p>
+                        今回は手回しによる回転方式を採用し、コイルの巻き数や磁石の配置を変えることで、出力電圧にどのような変化が現れるかをテスターを用いて計測しています。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                    <div class="bg-slate-200 rounded-lg overflow-hidden aspect-video relative group">
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100 text-sm border-2 border-dashed border-slate-300 rounded-lg">
+                            [ 実験中の写真・プロトタイプの画像 ]
+                        </div>
+                    </div>
+                    <div class="bg-slate-200 rounded-lg overflow-hidden aspect-video relative group">
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100 text-sm border-2 border-dashed border-slate-300 rounded-lg">
+                            [ テスターの測定数値の画像 ]
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+            <article class="prose prose-slate max-w-none pt-12 border-t border-slate-200">
+                <div class="flex items-center gap-3 mb-3 text-sm text-slate-500">
+                    <span class="bg-slate-100 text-slate-600 font-semibold px-2.5 py-0.5 rounded-full text-xs">フェーズ1: 企画</span>
+                    <time datetime="2026-05-27">2026年5月27日</time>
+                </div>
+                
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">ブレインストーミングによるテーマ決定と研究の方向性</h2>
+                
+                <div class="text-slate-700 space-y-4 leading-relaxed mb-6">
+                    <p>
+                        課題研究の授業内において、班員によるブレインストーミングを行い、本研究テーマを決定しました。
+                        その後、具体的な製作・検証に向け、どのようなアプローチで研究を進めるべきか、その方向性についてディスカッションを重ねて計画を具体化しました。
+                    </p>
+                    <p>
+                        特に「災害時における身近な素材の定義」について議論が白熱し、調達が容易なペットボトルや100円ショップの磁石をベースにする方針が固まりました。
+                    </p>
+                </div>
+
+                <div class="my-6">
+                    <div class="bg-slate-100 rounded-lg overflow-hidden aspect-video w-full max-w-2xl mx-auto border-2 border-dashed border-slate-300 flex flex-col items-center justify-center text-slate-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-2 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132
