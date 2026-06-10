@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロトタイプ最適化・改良検証 | 課題研究ポータルサイト</title>
+    <!-- Tailwind CSSの読み込み (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- カスタム設定 (既存のデザインコードと完全一致) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            600: '#2563eb', // 知的なブルー
+                            700: '#1d4ed8',
+                        },
+                        secondary: '#475569',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .scroll-mt-header {
+            scroll-margin-top: 4rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans leading-normal tracking-normal antialiased">
+
+    <!-- ナビゲーションバー (トップ・他ページへの動線) -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-primary-600 rounded-full"></span>
+                課題研究ポータルサイト
+            </a>
+            <nav class="flex gap-4">
+                <a href="index.html" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition">トップ</a>
+                <a href="planning.html" class="text-sm font-medium text-slate-600 hover:text-primary-600 transition">企画・活動記録</a>
+                <span class="text-slate-300">|</span>
+                <span class="text-sm font-semibold text-primary-600">最適化・改良</span>
+            </nav>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="max-w-3xl mx-auto px-4 py-10">
+        
+        <!-- ページヘッダー -->
+        <div class="border-b border-slate-200 pb-6 mb-10">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Phase 3: Optimization</span>
+            </div>
+            <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-2">プロトタイプ最適化及び改良</h1>
+            <p class="text-slate-600 text-sm">初期モデルの課題を抽出し、素材・構造・配置をブラッシュアップして発電効率を限界まで高めるプロセスです。</p>
+        </div>
+
+        <!-- 記事リスト (タイムライン・ブログ形式) -->
+        <div class="space-y-16">
+
+            <!-- 記事2: 改良第2弾（さらなる最適化と出力安定化） -->
+            <article class="prose prose-slate max-w-none">
+                <div class="flex items-center gap-3 mb-3 text-sm text-slate-500">
+                    <span class="bg-emerald-50 text-emerald-700 font-semibold px-2.5 py-0.5 rounded-full text-xs">検証完了</span>
+                    <time datetime="2026-06-25">2026年6月25日</time>
+                </div>
+                
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">回路の整流化とスマホ充電（目標5V）へのアプローチ</h2>
+                
+                <!-- 文字主体の記述 -->
+                <div class="text-slate-700 space-y-4 leading-relaxed mb-6">
+                    <p>
+                        プロトタイプ1号機では「交流（AC）」として電気を出力していましたが、これではLEDの点滅が不安定で、災害時の最大目標である「スマートフォンの充電」に対応できません。そこで今回は、発電機のコイルの配置をさらに最適化すると同時に、簡単な<strong>「整流回路（ダイオードブリッジ）」</strong>を実装することに決定しました。
+                    </p>
+                    <p>
+                        これにより、交流電力をより安定した直流電力（DC）へ変換することに成功しました。さらに、ローター（回転軸）の摩擦抵抗を減らすために、軸受け部分に身近な廃材のキャップをガイドとして装着。回転効率の向上を図りました。
+                    </p>
+                    <h3 class="text-lg font-bold text-slate-800 mt-6 mb-2">💡 主な最適化ポイント：</h3>
+                    <ul class="list-disc pl-5 space-y-1 text-slate-600 text-sm">
+                        <li><strong>軸受けの滑り性向上：</strong> ペットボトルキャップの内側に摩擦を低減する加工を施し、少ない力での高速回転を可能に。</li>
+                        <li><strong>ダイオードによる整流化：</strong> 交流から直流への変換回路を、はんだ付けを用いずブレッドボード上で簡易的に再現。</li>
+                        <li><strong>磁力線の集中：</strong> コイルの芯（コア）に、より透磁率の高い鉄心（身近なボルト・ナット等）を追加し、コイル内を通る磁束密度を大幅に向上。</li>
+                    </ul>
+                </div>
+
+                <!-- 比較画像エリア（Before / After などの画像配置を想定） -->
+                <div class="my-6">
+                    <p class="text-xs text-slate-500 mb-2 text-center">◆ 改良前と改良後の構造比較</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                            <div class="aspect-video bg-slate-100 flex items-center justify-center text-slate-400 border-b border-slate-100 text-sm">
+                                [ 改良前：手回しが重く、出力が不安定な初期モデル ]
+                            </div>
+                            <div class="p-3">
+                                <span class="text-xs font-bold text-slate-400">Before (プロトタイプ1号)</span>
+                                <p class="text-xs text-slate-600 mt-1">摩擦が大きくブレがあり、最大出力電圧は約1.5V止まり。</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
+                            <div class="aspect-video bg-slate-100 flex items-center justify-center text-slate-400 border-b border-slate-100 text-sm">
+                                [ 改良後：軸受け強化＋整流回路追加済みのモデル ]
+                            </div>
+                            <div class="p-3">
+                                <span class="text-xs font-bold text-emerald-600">After (改良プロトタイプ)</span>
+                                <p class="text-xs text-slate-600 mt-1">回転が劇的にスムーズになり、出力電圧は3.8Vを安定して記録。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- 記事1: 改良第1弾（初期の課題抽出とアプローチ検討） -->
+            <article class="prose prose-slate max-w-none pt-12 border-t border-slate-200">
+                <div class="flex items-center gap-3 mb-3 text-sm text-slate-500">
+                    <span class="bg-amber-50 text-amber-700 font-semibold px-2.5 py-0.5 rounded-full text-xs">課題解決アプローチ</span>
+                    <time datetime="2026-06-17">2026年6月17日</time>
+                </div>
+                
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">初期プロトタイプ稼働における「課題」の抽出と改良ロードマップ</h2>
+                
+                <!-- 文字主体の記述 -->
+                <div class="text-slate-700 space-y-4 leading-relaxed mb-6">
+                    <p>
+                        前回の検証実験で製作した「プロトタイプ1号機」を実際に回し、様々な数値を測定した結果、いくつかの重大なボトルネックが浮き彫りになりました。班全員でその問題点についてブレインストーミングを行い、改善策を検討しました。
+                    </p>
+                    
+                    <!-- 課題と対策のテーブル -->
+                    <div class="overflow-x-auto my-6">
+                        <table class="min-w-full divide-y divide-slate-200 text-sm">
+                            <thead class="bg-slate-100">
+                                <tr>
+                                    <th class="px-4 py-2 text-left font-bold text-slate-700">発見された課題</th>
+                                    <th class="px-4 py-2 text-left font-bold text-slate-700">考えられる原因</th>
+                                    <th class="px-4 py-2 text-left font-bold text-slate-700">改良のためのアプローチ</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-slate-600">
+                                <tr>
+                                    <td class="px-4 py-3 font-semibold text-slate-800">回転時に軸がぶれる</td>
+                                    <td class="px-4 py-3">軸を通すペットボトルの穴が緩い</td>
+                                    <td class="px-4 py-3">キャップを利用したダブルガイド構造にする</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-semibold text-slate-800">一定の電圧を超えない</td>
+                                    <td class="px-4 py-3">磁石とコイルの距離が離れすぎている</td>
+                                    <td class="px-4 py-3">ローターギリギリまでコイルを近づけ、固定する</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-semibold text-slate-800">発電した電気が活用しにくい</td>
+                                    <td class="px-4 py-3">交流波形であり極性が常に反転するため</td>
+                                    <td class="px-4 py-3">ダイオードを組み合わせて直流へ変換する</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>
+                        この分析に基づき、単に「回る」だけではない「効率的で実用的な発電機」に向けた改良ロードマップを策定しました。次回はいよいよ、これらの課題解決策をすべて反映した「完成版プロトタイプ」の動作実験と、最終的なデータ計測を行います。
+                    </p>
+                </div>
+
+                <!-- 検討風景の動画または図面添付エリア -->
+                <div class="my-6">
+                    <div class="bg-slate-100 rounded-lg overflow-hidden aspect-video w-full max-w-2xl mx-auto border-2 border-dashed border-slate-300 flex flex-col items-center justify-center text-slate-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-2 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                        </svg>
+                        <span class="text-sm">[ 改良設計図のスキャン・ディスカッション中のホワイトボード写真 ]</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-white border-t border-slate-200 py-8 mt-20">
+        <div class="max-w-4xl mx-auto px-4 text-center text-slate-500 text-sm">
+            <p>© 2026 課題研究 災害対策・簡易発電機開発プロジェクト 班一同</p>
+        </div>
+    </footer>
+
+</body>
+</html>
