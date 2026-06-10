@@ -1,0 +1,51 @@
+/* Global custom styles and dark-mode overrides (overrides Tailwind where needed) */
+:root{
+  --bg: #f8fafc; /* slate-50 */
+  --card-bg: #ffffff;
+  --text: #0f172a; /* slate-900 */
+  --muted: #64748b; /* slate-500 */
+  --border: #e6eef8; /* slate-100-ish */
+}
+
+html,body{background:var(--bg);color:var(--text)}
+
+/* Card and surface defaults */
+.card-bg{background:var(--card-bg)}
+
+/* Muted text */
+.muted{color:var(--muted)}
+
+/* Borders */
+.border-custom{border-color:var(--border)}
+
+/* Dark mode overrides via .dark on <html> */
+html.dark{
+  --bg:#020617; /* very dark */
+  --card-bg:#0f172a; /* slate-900-ish */
+  --text:#e2e8f0; /* slate-100 */
+  --muted:#cbd5e1; /* slate-300 */
+  --border:#334155; /* slate-700 */
+}
+
+/* Make common components adapt when Tailwind utility classes are present */
+html.dark body{background:var(--bg);color:var(--text)}
+html.dark .bg-white{background:var(--card-bg) !important}
+html.dark .bg-slate-50{background:var(--bg) !important}
+html.dark .bg-slate-100{background:#111827 !important}
+html.dark .bg-slate-200{background:#1e293b !important}
+html.dark .text-slate-900{color:var(--text) !important}
+html.dark .text-slate-800{color:var(--text) !important}
+html.dark .text-slate-700{color:var(--text) !important}
+html.dark .text-slate-600{color:var(--muted) !important}
+html.dark .text-slate-500{color:var(--muted) !important}
+html.dark .border-slate-100, html.dark .border-slate-200{border-color:var(--border) !important}
+
+/* Small helpers */
+.theme-toggle{cursor:pointer}
+
+/* Ensure links remain visible */
+html.dark a{color:#60a5fa}
+
+/* Accessibility tweak: ensure sufficient contrast for buttons */
+html.dark .bg-primary-600{background-color:#2563eb !important}
+html.dark .text-white{color:#ffffff !important}
