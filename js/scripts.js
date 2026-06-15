@@ -68,7 +68,9 @@ function initTimelineBadges() {
                 break;
             }
             if (badge) {
-              timelineItem.textContent = badge + timelineItem.textContent;
+              const badgeSpan = document.createElement('span');
+              badgeSpan.textContent = badge;
+              timelineItem.prepend(badgeSpan);
             }
           }
         });
