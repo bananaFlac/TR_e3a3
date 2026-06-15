@@ -2,15 +2,20 @@
  * scripts.js
  * 課題研究ポータルサイト - インタラクティブ機能
  *
+ * 導入: </body>直前に <script src="js/scripts.js"></script> を追加
+ *
  * 含まれる機能:
  *   1. ナビゲーション アクティブハイライト
  *   2. JSONファイルによるタイムライン進捗バッジ表示
  *   3. 画像のレイジーロード
  *   4. アンカーリンクのスムーズスクロール
  *   5. モバイルメニューの開閉
- *   6. リンク切れ（href="#"）のフォールバック
- *   7. スクロールフェードインアニメーション
- *   8. ページトップに戻るボタン
+ *   6. リンク切れ（href="#") のフォールバック
+ *   7. ページトップに戻るボタン
+ *   8. スクロールフェードインアニメーション
+ *   9. ナビバーのスクロール影強調
+ *  10. 外部リンクへの rel 自動付与
+ *  11. Escapeキーでモバイルメニューを閉じる
  */
 
 // ============================================
@@ -155,6 +160,61 @@ function initBrokenLinkFallback() {
 }
 
 // ============================================
+// 9. ナビバーのスクロール影強調
+// ============================================
+function initNavbarShadowOnScroll() {
+  const nav = document.querySelector('nav');
+  if (!nav) return;
+
+  const updateShadow = () => {
+    nav.classList.toggle('shadow-md', window.scrollY > 10);
+  };
+
+  updateShadow();
+  window.addEventListener('scroll', updateShadow, { passive: true });
+}
+
+// ============================================
+// 10. 外部リンクへの rel 自動付与
+// ============================================
+function initExternalLinkRel() {
+  document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+    const existingRel = link.getAttribute('rel') || '';
+    const relValues = new Set(existingRel.trim().split(/\s+/).filter(Boolean));
+
+    relValues.add('noopener');
+    relValues.add('noreferrer');
+
+    if (relValues.size > 0) {
+      link.setAttribute('rel', Array.from(relValues).join(' '));
+    }
+  });
+}
+
+// ============================================
+// 11. Escapeキーでモバイルメニューを閉じる
+// ============================================
+function initMobileMenuEscape() {
+  const mobileMenuButton = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuIcon = document.getElementById('menu-icon');
+
+  if (!mobileMenuButton || !mobileMenu || !mobileMenuIcon) return;
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    if (mobileMenu.classList.contains('hidden')) return;
+
+    mobileMenu.classList.add('hidden');
+    mobileMenuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+
+    if (mobileMenuButton.hasAttribute('aria-expanded')) {
+      mobileMenuButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+// ============================================
 // 7. ページトップに戻るボタン
 // ============================================
 function initBackToTop() {
@@ -229,11 +289,14 @@ function initFadeInAnimation() {
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
+  initMobileMenuEscape();
+  initExternalLinkRel();
+  initNavbarShadowOnScroll();
   initSmoothScroll();
   initLazyLoad();
   initNavigationHighlight();
   initTimelineBadges();
-  initBackToTop();
   initBrokenLinkFallback();
+  initBackToTop();
   initFadeInAnimation();
 });
