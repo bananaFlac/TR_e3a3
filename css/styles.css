@@ -103,5 +103,22 @@ footer{padding-top:3rem;padding-bottom:3rem}
 table{border-collapse:collapse}
 th,td{padding:.6rem .75rem}
 
+/* ヘッダー固定表示用のスクロール余白 */
+.scroll-mt-header {
+  scroll-margin-top: 4rem;
+}
+
+/* 画像保存・選択防止のためのスタイル */
+.no-save-img {
+  /* スマホでの長押しメニュー禁止 */
+  -webkit-touch-callout: none;
+  /* テキストや画像の選択を禁止 */
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 /* 画面上は非表示にする補助用 */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}

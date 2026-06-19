@@ -33,7 +33,7 @@
     </script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body id="top" class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans leading-normal tracking-normal antialiased">
+<body id="top" class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans leading-normal tracking-normal antialiased no-save-img">
 
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
@@ -58,7 +58,7 @@
         <div class="space-y-16">
 
             <!-- 記事1：テーマ決定と方向性のディスカッション -->
-            <article class="prose prose-slate max-w-none">
+            <article class="prose prose-slate max-w-none scroll-mt-header">
                 <div class="flex items-center gap-3 mb-3 text-sm text-slate-500">
                     <span class="bg-slate-100 text-slate-600 font-semibold px-2.5 py-0.5 rounded-full text-xs">フェーズ1: テーマ選定</span>
                 </div>
@@ -77,7 +77,7 @@
                     <!-- 追加画像（出典付き） -->
                     <div class="my-6 flex justify-center">
                         <figure class="w-full max-w-2xl overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-                            <img src="images/happaki.jpg" alt="発破器のイメージ画像" class="w-full h-auto max-h-[320px] object-contain bg-slate-50">
+                            <img src="images/happaki.jpg" alt="発破器のイメージ画像" class="no-save-img w-full h-auto max-h-[320px] object-contain bg-slate-50">
                             <figcaption class="px-3 py-2 text-xs text-slate-500 text-center">
                                 想定していた発破器のイメージ（出典：
                                 <a href="https://ja.wikipedia.org/wiki/%E3%83%80%E3%82%A4%E3%83%8A%E3%83%9E%E3%82%A4%E3%83%88%E3%83%BB%E3%83%97%E3%83%A9%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%BC"
@@ -137,7 +137,7 @@
             </article>
 
             <!-- 記事2：プロトタイプの製作と数値測定 (最新の活動) -->
-            <article class="prose prose-slate max-w-none pt-12 border-t border-slate-200">
+            <article class="prose prose-slate max-w-none pt-12 border-t border-slate-200 scroll-mt-header">
                 <div class="flex items-center gap-3 mb-3 text-sm text-slate-500">
                     <span class="bg-primary-50 text-primary-600 font-semibold px-2.5 py-0.5 rounded-full text-xs">フェーズ2: 実験・測定</span>
                 </div>
@@ -195,11 +195,11 @@
                     <!-- オシロスコープ波形画像 -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
                         <figure class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-                            <img src="images/IMG_2026.jpeg" alt="ハブダイナモ1の波形画像" class="w-full h-64 object-cover">
+                            <img src="images/IMG_2026.jpeg" alt="ハブダイナモ1の波形画像" class="no-save-img w-full h-64 object-cover">
                             <figcaption class="px-3 py-2 text-center text-xs text-slate-500">採用したハブダイナモの波形</figcaption>
                         </figure>
                         <figure class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-                            <img src="images/IMG_2027.jpeg" alt="ハブダイナモ2の波形画像" class="w-full h-64 object-cover">
+                            <img src="images/IMG_2027.jpeg" alt="ハブダイナモ2の波形画像" class="no-save-img w-full h-64 object-cover">
                             <figcaption class="px-3 py-2 text-center text-xs text-slate-500">採用しなかったハブダイナモの波形</figcaption>
                         </figure>
                     </div>
@@ -250,5 +250,6 @@
         </div>
     </main>
 
+    <script src="js/scripts.js"></script>
 </body>
 </html>

@@ -215,6 +215,52 @@ function initMobileMenuEscape() {
 }
 
 // ============================================
+// 12. 右クリックメニューの無効化
+// ============================================
+function initDisableContextMenu() {
+  document.addEventListener('contextmenu', (event) => {
+    event.preventDefault();
+  });
+}
+
+// ============================================
+// 13. .no-save-img 対象要素の保護処理
+// ============================================
+function initProtectNoSaveImages() {
+  const protectedElements = document.querySelectorAll('.no-save-img');
+
+  protectedElements.forEach((element) => {
+    element.style.pointerEvents = 'auto';
+
+    element.addEventListener(
+      'contextmenu',
+      (event) => {
+        event.preventDefault();
+      },
+      { passive: false }
+    );
+
+    element.addEventListener(
+      'dragstart',
+      (event) => {
+        event.preventDefault();
+      },
+      { passive: false }
+    );
+
+    element.addEventListener(
+      'mousedown',
+      (event) => {
+        if (event.button === 2 || event.button === 1) {
+          event.preventDefault();
+        }
+      },
+      { passive: false }
+    );
+  });
+}
+
+// ============================================
 // 7. ページトップに戻るボタン
 // ============================================
 function initBackToTop() {
@@ -290,6 +336,8 @@ function initFadeInAnimation() {
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initMobileMenuEscape();
+  initDisableContextMenu();
+  initProtectNoSaveImages();
   initExternalLinkRel();
   initNavbarShadowOnScroll();
   initSmoothScroll();
