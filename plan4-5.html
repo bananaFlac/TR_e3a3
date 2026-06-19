@@ -179,18 +179,16 @@
                         </p>
                     </div>
 
-                    <!-- オシロスコープ波形イメージのプレースホルダー -->
-                    <div class="bg-slate-900 text-green-400 p-4 rounded-xl font-mono text-xs my-4 shadow-inner relative overflow-hidden">
-                        <div class="absolute top-2 right-2 text-[10px] text-slate-500">OSCILLOSCOPE ADY-900</div>
-                        <p class="text-slate-400 mb-2">// 波形観測比較イメージ (角ばった山型の波形)</p>
-                        <div class="h-24 flex items-center justify-center border border-slate-800 rounded bg-slate-950">
-                            <!-- SVGによる簡易的な波形表現 -->
-                            <svg class="w-full h-16 stroke-green-400 fill-none" viewBox="0 0 400 100">
-                                <path stroke-width="2" d="M 0 50 Q 25 10 50 10 Q 75 10 100 50 Q 125 90 150 90 Q 175 90 200 50 Q 225 10 250 10 Q 275 10 300 50 Q 325 90 350 90 Q 375 90 400 50" />
-                                <line x1="0" y1="50" x2="400" y2="50" stroke="#1e293b" stroke-dasharray="5,5" />
-                            </svg>
-                        </div>
-                        <p class="mt-2 text-center text-slate-500 text-[10px]">※採用した異種ダイナモの、乱れが少なく安定した出力波形</p>
+                    <!-- オシロスコープ波形画像 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+                        <figure class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+                            <img src="images/IMG_2026.jpeg" alt="ハブダイナモ1の波形の画像" class="w-full h-64 object-cover">
+                            <figcaption class="px-3 py-2 text-center text-xs text-slate-500">オシロスコープで確認した波形</figcaption>
+                        </figure>
+                        <figure class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+                            <img src="images/IMG_2027.jpeg" alt="ハブダイナモ2の波形の画像" class="w-full h-64 object-cover">
+                            <figcaption class="px-3 py-2 text-center text-xs text-slate-500">オシロスコープで確認した波形</figcaption>
+                        </figure>
                     </div>
 
                     <!-- セクション4：安全性と固定台の製作 -->
