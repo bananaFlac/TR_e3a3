@@ -218,9 +218,31 @@ function initMobileMenuEscape() {
 // 12. 右クリックメニューの無効化
 // ============================================
 function initDisableContextMenu() {
-  document.addEventListener('contextmenu', (event) => {
+  const blockContextMenu = (event) => {
     event.preventDefault();
-  });
+    event.stopPropagation();
+  };
+
+  document.addEventListener('contextmenu', blockContextMenu, true);
+  document.addEventListener(
+    'mousedown',
+    (event) => {
+      if (event.button === 2 || event.button === 1) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    },
+    true
+  );
+
+  document.addEventListener(
+    'dragstart',
+    (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+    },
+    true
+  );
 }
 
 // ============================================
@@ -232,30 +254,22 @@ function initProtectNoSaveImages() {
   protectedElements.forEach((element) => {
     element.style.pointerEvents = 'auto';
 
-    element.addEventListener(
-      'contextmenu',
-      (event) => {
-        event.preventDefault();
-      },
-      { passive: false }
-    );
+    const blockEvent = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+    };
 
-    element.addEventListener(
-      'dragstart',
-      (event) => {
-        event.preventDefault();
-      },
-      { passive: false }
-    );
-
+    element.addEventListener('contextmenu', blockEvent, true);
+    element.addEventListener('dragstart', blockEvent, true);
     element.addEventListener(
       'mousedown',
       (event) => {
         if (event.button === 2 || event.button === 1) {
           event.preventDefault();
+          event.stopPropagation();
         }
       },
-      { passive: false }
+      true
     );
   });
 }
