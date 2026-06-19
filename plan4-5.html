@@ -57,8 +57,73 @@
         <!-- 記事リスト (タイムライン・ブログ形式) -->
         <div class="space-y-16">
 
-            <!-- 記事2：プロトタイプの製作と数値測定 (最新の活動) -->
+            <!-- 記事1：テーマ決定と方向性のディスカッション -->
             <article class="prose prose-slate max-w-none">
+                <div class="flex items-center gap-3 mb-3 text-sm text-slate-500">
+                    <span class="bg-slate-100 text-slate-600 font-semibold px-2.5 py-0.5 rounded-full text-xs">フェーズ1: テーマ選定</span>
+                    <time datetime="2026-05-27">2026年5月27日</time>
+                </div>
+                
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">ブレインストーミング：発破器から「自転車ハブダイナモを用いた三相交流」への転換</h2>
+                
+                <!-- 文字主体の記述 -->
+                <div class="text-slate-700 space-y-4 leading-relaxed mb-6">
+                    <p>
+                        私たちの班では、課題研究のテーマ決定にあたり、まず授業内において班員全員でのブレインストーミングを実施しました。
+                    </p>
+                    <p>
+                        最初のアイデア出しでは、強いエネルギーを瞬間的に生み出す<strong>「発破器」</strong>の製作案が立案されました。しかし、「なぜその構造にするのか」「どのように効率を高めるか」といった学術的なアプローチについて議論を深めるうち、研究として深く掘り下げるための内容（検証要素）が乏しいという重大な課題に直面し、一度計画をリセットすることにしました。
+                    </p>
+                    
+                    <h3 class="text-lg font-bold text-slate-800 mt-6 mb-2">💡 現実的な課題解決と「余った自転車」の活用</h3>
+                    <p>
+                        そこで、議論の視点を「単に電気を作る」ことから<strong>「発電機から住宅（消費場所）までの送電・活用過程をミニチュアサイズで再現する」</strong>という、より社会インフラに近いシステムの研究へとシフトさせました。
+                        その際、班員から「使わずに余っている自転車がある」という具体的なアイデアが上がり、これを用いた<strong>「自転車による三相交流発電の再現」</strong>に挑むことが決定しました。
+                    </p>
+
+                    <h3 class="text-lg font-bold text-slate-800 mt-6 mb-2">⚙️ 「自作」から「ハブダイナモの採用」への設計変更</h3>
+                    <p>
+                        当初の設計案では、コイルと磁石を自分たちで巻き、発電機自体のフルスクラッチ（自作）を行う予定でした。しかし、限られた活動期間内での「設計の緻密さ」「作成の複雑さ」「失敗リスク」を徹底的にディスカッションした結果、発電機そのものを作るのではなく、身近に存在する非常に優秀な交流発電機である<strong>「自転車のハブダイナモ」</strong>をそのまま採用する方針へ切り替えました。これは、ハブダイナモが内部に交流発電の仕組みを綺麗に備えているため、研究の焦点を「発電機内部の微細な調整」から「送電・活用システムとしての効率化」に集中させるための合理的な判断でした。
+                    </p>
+
+                    <h3 class="text-lg font-bold text-slate-800 mt-6 mb-2">🌍 社会に役立つ要素との紐づけ：災害時の活用</h3>
+                    <p>
+                        このテーマを学術的な研究にとどめず、より社会貢献性の高い要素と紐づけたいと考え、最終的な研究の主軸を<strong>「災害時に役立つ身近なものを使った効率的な交流発電機および送電システムの検証」</strong>として策定しました。
+                    </p>
+                    <p>
+                        実験を進めるにあたっては、最初から難易度の高い三相交流に挑むのではなく、まずは<strong>「単相交流発電」の再現と評価から段階的にアプローチする</strong>というクリアな手順を設定し、班全員の共通認識としました。
+                    </p>
+                </div>
+
+                <!-- ディスカッションの様子を想起させる図 -->
+                <div class="my-6">
+                    <div class="bg-slate-100 p-4 rounded-xl border border-slate-200">
+                        <p class="text-sm font-semibold text-slate-700 mb-3">■ 私たちの班のテーマ変遷・アプローチロードマップ</p>
+                        <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center">
+                            <div class="bg-red-50 text-red-700 p-3 rounded-lg border border-red-100 flex-1 w-full">
+                                <span class="text-xs font-bold block mb-1">【初期案】</span>
+                                <span class="font-bold text-sm">発破器の作成</span>
+                                <p class="text-xs mt-1 text-slate-500">掘り下げる検証内容が少なく断念</p>
+                            </div>
+                            <div class="text-slate-400 hidden md:block">➔</div>
+                            <div class="bg-amber-50 text-amber-800 p-3 rounded-lg border border-amber-100 flex-1 w-full">
+                                <span class="text-xs font-bold block mb-1">【検討期】</span>
+                                <span class="font-bold text-sm">発電機自体の自作</span>
+                                <p class="text-xs mt-1 text-slate-500">期間と作製プロセスの複雑さから見直し</p>
+                            </div>
+                            <div class="text-slate-400 hidden md:block">➔</div>
+                            <div class="bg-emerald-50 text-emerald-800 p-3 rounded-lg border border-emerald-100 flex-1 w-full">
+                                <span class="text-xs font-bold block mb-1">【決定案（現在）】</span>
+                                <span class="font-bold text-sm">ハブダイナモ＋自転車</span>
+                                <p class="text-xs mt-1 text-slate-500">単相から三相交流への段階的アプローチ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 記事2：プロトタイプの製作と数値測定 (最新の活動) -->
+            <article class="prose prose-slate max-w-none pt-12 border-t border-slate-200">
                 <div class="flex items-center gap-3 mb-3 text-sm text-slate-500">
                     <span class="bg-primary-50 text-primary-600 font-semibold px-2.5 py-0.5 rounded-full text-xs">フェーズ2: 実験・測定</span>
                     <time datetime="2026-06-19">2026年6月19日</time>
@@ -167,72 +232,6 @@
                             [ 組み立て中の頑丈な木製自転車固定台の写真 ]
                         </div>
                         <p class="text-xs text-slate-500 mt-2 text-center">木材とねじによる専用固定台の製作</p>
-                    </div>
-                </div>
-            </article>
-
-
-            <!-- 記事1：テーマ決定と方向性のディスカッション -->
-            <article class="prose prose-slate max-w-none pt-12 border-t border-slate-200">
-                <div class="flex items-center gap-3 mb-3 text-sm text-slate-500">
-                    <span class="bg-slate-100 text-slate-600 font-semibold px-2.5 py-0.5 rounded-full text-xs">フェーズ1: テーマ選定</span>
-                    <time datetime="2026-05-27">2026年5月27日</time>
-                </div>
-                
-                <h2 class="text-2xl font-bold text-slate-900 mb-4">ブレインストーミング：発破器から「自転車ハブダイナモを用いた三相交流」への転換</h2>
-                
-                <!-- 文字主体の記述 -->
-                <div class="text-slate-700 space-y-4 leading-relaxed mb-6">
-                    <p>
-                        私たちの班では、課題研究のテーマ決定にあたり、まず授業内において班員全員でのブレインストーミングを実施しました。
-                    </p>
-                    <p>
-                        最初のアイデア出しでは、強いエネルギーを瞬間的に生み出す<strong>「発破器」</strong>の製作案が立案されました。しかし、「なぜその構造にするのか」「どのように効率を高めるか」といった学術的なアプローチについて議論を深めるうち、研究として深く掘り下げるための内容（検証要素）が乏しいという重大な課題に直面し、一度計画をリセットすることにしました。
-                    </p>
-                    
-                    <h3 class="text-lg font-bold text-slate-800 mt-6 mb-2">💡 現実的な課題解決と「余った自転車」の活用</h3>
-                    <p>
-                        そこで、議論の視点を「単に電気を作る」ことから<strong>「発電機から住宅（消費場所）までの送電・活用過程をミニチュアサイズで再現する」</strong>という、より社会インフラに近いシステムの研究へとシフトさせました。
-                        その際、班員から「使わずに余っている自転車がある」という具体的なアイデアが上がり、これを用いた<strong>「自転車による三相交流発電の再現」</strong>に挑むことが決定しました。
-                    </p>
-
-                    <h3 class="text-lg font-bold text-slate-800 mt-6 mb-2">⚙️ 「自作」から「ハブダイナモの採用」への設計変更</h3>
-                    <p>
-                        当初の設計案では、コイルと磁石を自分たちで巻き、発電機自体のフルスクラッチ（自作）を行う予定でした。しかし、限られた活動期間内での「設計の緻密さ」「作成の複雑さ」「失敗リスク」を徹底的にディスカッションした結果、発電機そのものを作るのではなく、身近に存在する非常に優秀な交流発電機である<strong>「自転車のハブダイナモ」</strong>をそのまま採用する方針へ切り替えました。これは、ハブダイナモが内部に交流発電の仕組みを綺麗に備えているため、研究の焦点を「発電機内部の微細な調整」から「送電・活用システムとしての効率化」に集中させるための合理的な判断でした。
-                    </p>
-
-                    <h3 class="text-lg font-bold text-slate-800 mt-6 mb-2">🌍 社会に役立つ要素との紐づけ：災害時の活用</h3>
-                    <p>
-                        このテーマを学術的な研究にとどめず、より社会貢献性の高い要素と紐づけたいと考え、最終的な研究の主軸を<strong>「災害時に役立つ身近なものを使った効率的な交流発電機および送電システムの検証」</strong>として策定しました。
-                    </p>
-                    <p>
-                        実験を進めるにあたっては、最初から難易度の高い三相交流に挑むのではなく、まずは<strong>「単相交流発電」の再現と評価から段階的にアプローチする</strong>というクリアな手順を設定し、班全員の共通認識としました。
-                    </p>
-                </div>
-
-                <!-- ディスカッションの様子を想起させる図 -->
-                <div class="my-6">
-                    <div class="bg-slate-100 p-4 rounded-xl border border-slate-200">
-                        <p class="text-sm font-semibold text-slate-700 mb-3">■ 私たちの班のテーマ変遷・アプローチロードマップ</p>
-                        <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center">
-                            <div class="bg-red-50 text-red-700 p-3 rounded-lg border border-red-100 flex-1 w-full">
-                                <span class="text-xs font-bold block mb-1">【初期案】</span>
-                                <span class="font-bold text-sm">発破器の作成</span>
-                                <p class="text-xs mt-1 text-slate-500">掘り下げる検証内容が少なく断念</p>
-                            </div>
-                            <div class="text-slate-400 hidden md:block">➔</div>
-                            <div class="bg-amber-50 text-amber-800 p-3 rounded-lg border border-amber-100 flex-1 w-full">
-                                <span class="text-xs font-bold block mb-1">【検討期】</span>
-                                <span class="font-bold text-sm">発電機自体の自作</span>
-                                <p class="text-xs mt-1 text-slate-500">期間と作製プロセスの複雑さから見直し</p>
-                            </div>
-                            <div class="text-slate-400 hidden md:block">➔</div>
-                            <div class="bg-emerald-50 text-emerald-800 p-3 rounded-lg border border-emerald-100 flex-1 w-full">
-                                <span class="text-xs font-bold block mb-1">【決定案（現在）】</span>
-                                <span class="font-bold text-sm">ハブダイナモ＋自転車</span>
-                                <p class="text-xs mt-1 text-slate-500">単相から三相交流への段階的アプローチ</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </article>
