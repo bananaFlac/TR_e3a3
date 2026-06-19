@@ -64,33 +64,109 @@
                     <time datetime="2026-06-19">2026年6月19日</time>
                 </div>
                 
-                <h2 class="text-2xl font-bold text-slate-900 mb-4">プロトタイプの実装と初期数値測定へのステップ</h2>
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">ダイモの特性調査、自転車発電実験、および木製固定台の製作</h2>
                 
-                <div class="text-slate-700 space-y-4 leading-relaxed mb-6">
-                    <p>
-                        決定した研究ロードマップに従い、まずは検証の第一段階として<strong>「単相交流発電」の再現と出力の測定</strong>からスタートしました。最初から複雑な三相交流を目指すのではなく、段階的なアプローチを取ることで、配線ミスや測定エラーなどのボトルネックを確実に取り除く作戦です。
-                    </p>
-                    <p>
-                        プロトタイプの製作においては、使用部品の選定と配置が重要な鍵となります。自転車の回転運動をいかに効率よくハブダイナモ（発電部）へ伝えるか、その固定方法やギア比の設計について班内でディスカッションを行いました。
-                    </p>
-                    <p>
-                        実装後は、テスターを用いて実際に「ペダルの回転数（スピード）」に応じた出力電圧（V）を測定。災害時の最低限のインフラとして機能するだけの電力が確保できるかを定量的に検証しています。
-                    </p>
+                <div class="text-slate-700 space-y-6 leading-relaxed mb-6">
+                    
+                    <!-- セクション1：ダイモの基礎調査 -->
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800 border-l-4 border-primary-600 pl-3 mb-3">1. 発電に使用するダイナモの基礎調査</h3>
+                        <p>
+                            自転車が届いた後、私たちはまず発電に使用するダイナモの調査から始めました。実習室に保管されていたダイナモと扇風機のモーターを借り、それぞれがどのような特性を持っているのかを確認しました。
+                        </p>
+                        <p class="mt-2">
+                            最初はダイナモを手で回転させながら、テスターを使用して測定を行いました。その結果、ダイナモから発生している電気が<strong>「交流」</strong>であることを確認することができました。また、回転速度によって変化はあるものの、十分に発電していることが分かり、発電装置として利用できる高い可能性があると考えました。
+                        </p>
+                    </div>
+
+                    <!-- セクション2：自転車による発電実験 -->
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800 border-l-4 border-primary-600 pl-3 mb-3">2. 自転車を利用した発電実験と驚きの測定数値</h3>
+                        <p>
+                            次に、自転車を実際に利用した発電実験を行いました。前輪を取り外して椅子の上に固定し、後輪だけがフリーで回転する状態を作りました。その後、後輪にダイナモを取り付けて実際に回転させたところ、問題なく発電できることを確認できました。
+                        </p>
+                        <p class="mt-2">
+                            手で回す実験よりも圧倒的に高い電圧が得られ、自転車の回転エネルギーを効率よく電気エネルギーへ変換できていることが実証されました。テスターで測定したところ、<strong>平均で約100V前後、条件によっては最大300V近くまで電圧が上昇する</strong>ことが分かり、回転速度によって発電電圧が極めてダイナミックに変化することを実感しました。
+                        </p>
+                    </div>
+
+                    <!-- 数値ハイライト表示 -->
+                    <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 my-6 flex justify-around items-center text-center">
+                        <div>
+                            <span class="text-xs text-blue-600 font-bold block mb-1">平均発電電圧</span>
+                            <span class="text-2xl font-extrabold text-blue-900">約 100 V 前後</span>
+                        </div>
+                        <div class="h-8 w-px bg-blue-200"></div>
+                        <div>
+                            <span class="text-xs text-red-500 font-bold block mb-1">最大瞬間電圧</span>
+                            <span class="text-2xl font-extrabold text-red-600">300 V 近く</span>
+                        </div>
+                    </div>
+
+                    <!-- セクション3：オシロスコープでの観測 -->
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800 border-l-4 border-primary-600 pl-3 mb-3">3. オシロスコープを用いた波形観測とダイナモの選定</h3>
+                        <p>
+                            さらに詳しくダイナモの性能を調べるため、オシロスコープを接続して波形観測を行いました。今回使用できるダイナモは全部で4個あり、そのうち3個は同じ種類、残り1個は異なる種類のダイナモでした。
+                        </p>
+                        <p class="mt-2">
+                            それぞれのダイナモについて波形や電圧の出方を比較したところ、<strong>異なる種類のダイナモが最も安定した出力</strong>を示しました。オシロスコープに表示された波形は「角ばった山のような形」をしており、他のダイナモと比べて波形が乱れにくく、一定の出力が得られていました。また、回転も比較的軽く、少ない力でも電圧が出やすかったため、この優秀なダイナモを今後の製作でメインに採用することに決定しました。
+                        </p>
+                    </div>
+
+                    <!-- オシロスコープ波形イメージのプレースホルダー -->
+                    <div class="bg-slate-900 text-green-400 p-4 rounded-xl font-mono text-xs my-4 shadow-inner relative overflow-hidden">
+                        <div class="absolute top-2 right-2 text-[10px] text-slate-500">OSCILLOSCOPE ADY-900</div>
+                        <p class="text-slate-400 mb-2">// 波形観測比較イメージ (角ばった山型の波形)</p>
+                        <div class="h-24 flex items-center justify-center border border-slate-800 rounded bg-slate-950">
+                            <!-- SVGによる簡易的な波形表現 -->
+                            <svg class="w-full h-16 stroke-green-400 fill-none" viewBox="0 0 400 100">
+                                <path stroke-width="2" d="M 0 50 Q 25 10 50 10 Q 75 10 100 50 Q 125 90 150 90 Q 175 90 200 50 Q 225 10 250 10 Q 275 10 300 50 Q 325 90 350 90 Q 375 90 400 50" />
+                                <line x1="0" y1="50" x2="400" y2="50" stroke="#1e293b" stroke-dasharray="5,5" />
+                            </svg>
+                        </div>
+                        <p class="mt-2 text-center text-slate-500 text-[10px]">※採用した異種ダイナモの、乱れが少なく安定した出力波形</p>
+                    </div>
+
+                    <!-- セクション4：安全性と固定台の製作 -->
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800 border-l-4 border-primary-600 pl-3 mb-3">4. 安全性を考慮した木製固定台の製作</h3>
+                        <p>
+                            ダイナモの選定が終わった後は、自転車本体の安全性とダイナモの固定方法について検討を重ねました。実験中に自転車が不意に動いたり、ダイナモが回転の振動でずれたりすると非常に危険であるため、しっかりとホールドできる頑丈な固定構造が必要だと考えました。
+                        </p>
+                        <p class="mt-2">
+                            そこで、<strong>木材を利用して固定用の枠組みを製作</strong>することにしました。使用する木材は強度を重視し、自転車とこぐ人の体重を安定して支えられる肉厚なものを選定しました。そして必要な位置に綿密なケガキを行い、穴を開け、ねじを通して組み立てることで固定台の製作を進めました。
+                        </p>
+                    </div>
+
+                    <!-- セクション5：今後の展望 -->
+                    <div class="bg-slate-100 p-5 rounded-xl border border-slate-200 mt-6">
+                        <h3 class="text-md font-bold text-slate-800 mb-2">🚀 今後のステップと展望</h3>
+                        <p class="text-sm text-slate-600 mb-4">
+                            ダイナモの選定と安定した駆動環境（固定台）が整ったため、次は以下の計画に沿って実装と検証を進めていきます。
+                        </p>
+                        <ul class="list-disc pl-5 space-y-2 text-sm text-slate-600">
+                            <li><strong>整流回路の設計と製作：</strong> ダイナモで発電した高電圧の交流を、実用的な直流に変換する回路を構築。</li>
+                            <li><strong>回路シミュレータでの動作確認：</strong> 安全対策として、事前にソフト上でシミュレーションを行い、安全で効率の良い抵抗値やコンデンサ容量を検討。</li>
+                            <li><strong>実用システムの完成：</strong> 自転車をこぐことで得られたクリーンな電気で、スマートフォンの充電やLED点灯などを実際に行える統合システムを完成させる。</li>
+                        </ul>
+                    </div>
+
                 </div>
 
-                <!-- 画像の添付エリア (1段または2連で並べられます) -->
+                <!-- 画像の添付エリア -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
                     <div class="bg-white p-2 rounded-xl border border-slate-200 shadow-sm">
                         <div class="aspect-video bg-slate-100 flex items-center justify-center text-slate-400 text-sm rounded-lg border-2 border-dashed border-slate-200">
-                            [ 自転車を固定し、ハブダイナモを設置した実験セット ]
+                            [ 実習室でのダイナモ＆扇風機モーターの比較実験写真 ]
                         </div>
-                        <p class="text-xs text-slate-500 mt-2 text-center">実験器具の全体構成</p>
+                        <p class="text-xs text-slate-500 mt-2 text-center">ダイナモ特性の初期テスト</p>
                     </div>
                     <div class="bg-white p-2 rounded-xl border border-slate-200 shadow-sm">
                         <div class="aspect-video bg-slate-100 flex items-center justify-center text-slate-400 text-sm rounded-lg border-2 border-dashed border-slate-200">
-                            [ テスターによる単相交流の電圧測定風景 ]
+                            [ 組み立て中の頑丈な木製自転車固定台の写真 ]
                         </div>
-                        <p class="text-xs text-slate-500 mt-2 text-center">マルチメーターによる電圧測定値の記録</p>
+                        <p class="text-xs text-slate-500 mt-2 text-center">木材とねじによる専用固定台の製作</p>
                     </div>
                 </div>
             </article>
