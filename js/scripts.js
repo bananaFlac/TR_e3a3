@@ -362,3 +362,37 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   initFadeInAnimation();
 });
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'PrintScreen') {
+        // クリップボードのクリアを試みる（フォールバック付き）
+        try {
+            navigator.clipboard.writeText("");
+        } catch (err) {
+            // iframeなどの制限で navigator.clipboard が動かない場合の代替手段
+            const dummyInput = document.createElement('input');
+            dummyInput.value = ' ';
+            document.body.appendChild(dummyInput);
+            dummyInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummyInput);
+        }
+        alert("このサイトではスクリーンショットによる保存は禁止されています。");
+    }
+
+    // Macの「Cmd + Shift + 3 / 4（スクショのショートカット）」を検知して動作をキャンセル
+    if (e.metaKey && e.shiftKey && (e.key === '3' || e.key === '4')) {
+        e.preventDefault();
+        alert("スクリーンショットは制限されています。");
+    }
+});
+
+// 2. 右クリックメニュー（名前を付けて画像を保存）を完全に禁止
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
+
+// 3. 画面上のテキストや画像のドラッグ選択（コピー）を禁止
+document.addEventListener('selectstart', function(e) {
+    e.preventDefault();
+});
